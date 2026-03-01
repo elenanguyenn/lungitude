@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  min-height: 844px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+}
+
+.app {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  min-height: 844px;
+  max-width: 390px;
+  overflow: visible;
+  background: #111;
+  touch-action: manipulation;
+  display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 844px;
+  opacity: 0;
+  display: none;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.screen.active {
+  opacity: 1 !important;
+  z-index: 1;
+  display: block !important;
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+  min-height: 844px;
+  object-fit: cover;
+  object-position: center top;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.ui-input {
+  box-sizing: border-box;
+  background: #d4d2d3;
+  color: #111;
+  caret-color: #111;
+  border: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  outline: none;
+  z-index: 70;
+  pointer-events: auto;
+}
+
+.ui-input::placeholder {
+  color: transparent;
+}
+
+.input-proxy {
+  position: absolute;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: text;
+  z-index: 80;
+}
+
+.invisible-btn {
+  position: absolute;
+  background-color: transparent;
+  color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.ai-btn {
+  position: absolute !important;
+  left: 180px !important;
+  bottom: 54px !important;
+  width: 80px !important;
+  height: 30px !important;
+  background-color: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  z-index: 999 !important;
+}
+
+.settings-btn {
+  position: absolute !important;
+  right: 20px !important;
+  bottom: 20px !important;
+  width: 80px !important;
+  height: 40px !important;
+  background-color: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  z-index: 999 !important;
+}
+
+.nav-zone {
+  position: absolute;
+  top: 0;
+  width: 14%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 40;
+}
+
+.nav-zone.prev { left: 0; }
+.nav-zone.next { right: 0; }
+
+.fallback {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #b71c1c;
+  font-weight: 600;
+}
+
+@keyframes fadeInApp {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.screen#1.active {
+  animation: fadeInApp 1.5s ease-out !important;
+}
+
+@media screen and (max-width: 430px) {
+  .bg {
+    height: calc(100vh + 20px) !important;
+    min-height: calc(100vh + 20px) !important;
+  }
+  
+  .ai-btn {
+    left: 180px !important;
+    bottom: 54px !important;
+  }
+  
+  .settings-btn {
+    right: 20px !important;
+    bottom: 20px !important;
+  }
+}
+
+#dateOfBirth {
+  color: transparent;
+}
+
+#dateOfBirth:focus,
+#dateOfBirth:valid {
+  color: black;
+}
+
+#dateOfBirth::-webkit-calendar-picker-indicator {
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 4px;
+  border: none;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  animation: bounce 1.4s infinite;
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0ms; }
+.typing-dot:nth-child(2) { animation-delay: 160ms; }
+.typing-dot:nth-child(3) { animation-delay: 320ms; }
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-3px); }
+  60% { transform: translateY(-2px); }
+}
+
+.quiz-btn {
+  background-color: #1a1a7c;
+  border: 2px solid #4fc3f7;
+  color: #e0f7fa;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.quiz-section {
+  background-color: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.quiz-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+  pointer-events: none;
+}
+
+.quiz-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}

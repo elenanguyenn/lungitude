@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Health Interactive Lesson</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        :root {
+            --primary-bg: #0d0d4a;
+            --secondary-bg: #1a1a7c;
+            --neon-pink: #f06292;
+            --neon-blue: #4fc3f7;
+            --text-light: #e0f7fa;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header-bar {
+            background: linear-gradient(90deg, var(--neon-pink) 0%, var(--neon-blue) 100%);
+            height: 8px;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+        .neon-text {
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-pink);
+        }
+        .card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .quiz-button {
+            background-color: var(--secondary-bg);
+            border: 2px solid var(--neon-blue);
+            transition: all 0.2s;
+        }
+        .quiz-button:hover {
+            background-color: rgba(79, 195, 247, 0.2);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+        .quiz-button.selected {
+            background-color: var(--neon-blue);
+            color: var(--primary-bg);
+            box-shadow: 0 0 15px var(--neon-blue);
+            border-color: var(--neon-blue);
+        }
+        .quiz-button.correct {
+            background-color: #4CAF50;
+            box-shadow: 0 0 15px #4CAF50;
+            border-color: #4CAF50;
+        }
+        .quiz-button.incorrect {
+            background-color: #F44336;
+            box-shadow: 0 0 15px #F44336;
+            border-color: #F44336;
+        }
+        .card h2, .card h3 {
+            color: var(--text-light);
+            text-shadow: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6">
+
+    <header class="flex items-center justify-between pt-4 pb-6">
+        <button onclick="history.back()" class="text-white font-semibold text-sm px-3 py-1 rounded-full bg-red-600 hover:bg-red-700 transition duration-150">
+            EXIT
+        </button>
+        <h1 class="text-xl font-extrabold text-white tracking-wider">LUNG CANCER INTERACTIVE</h1>
+        <div class="w-12"></div>
+    </header>
+    <div class="header-bar mb-6"></div>
+
+    <main class="max-w-xl mx-auto">
+        
+        <section class="mb-8 card p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-3">1. The Invisible Enemy: Wildfire Smoke</h2>
+            <p class="leading-relaxed mb-4">Wildfire smoke is more than just a nuisance; it's a toxic cocktail of gases and **Particulate Matter (PM)**. PM is categorized by size, with **PM2.5** being the most dangerous. These particles are incredibly small—about 30 times smaller than a human hair—allowing them to bypass your body's defenses and lodge deep inside the lungs. </p>
+            <p class="leading-relaxed">For firefighters and those with long-term exposure, this chronic irritation and introduction of **carcinogens** drastically increases the risk of pulmonary diseases.</p>
+        </section>
+
+        <section id="quiz1" class="mb-8 card p-6 rounded-xl">
+            <h3 class="text-xl font-semibold mb-4">Quick Check: What is the most dangerous particulate matter size?</h3>
+            <div class="flex flex-col space-y-3">
+                <button class="quiz-button p-3 rounded-lg text-left" data-answer="A">A. PM10</button>
+                <button class="quiz-button p-3 rounded-lg text-left" data-answer="B">B. PM2.5</button>
+                <button class="quiz-button p-3 rounded-lg text-left" data-answer="C">C. PM50</button>
+            </div>
+            <div id="feedback1" class="mt-4 font-bold hidden"></div>
+        </section>
+
+        <section class="mb-8 card p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-3">2. How Smoke Damages Lung Cells</h2>
+            <p class="leading-relaxed mb-4">When PM2.5 particles are inhaled, they cause **oxidative stress** in the cells lining the airways and alveoli (air sacs). This is like rust forming on metal; it's an imbalance that damages the cells' **DNA**. Over time, this cumulative damage can lead to cellular mutations and uncontrolled growth, the definition of cancer.</p>
+            <p class="leading-relaxed">The toxins, including **polycyclic aromatic hydrocarbons (PAHs)** and heavy metals, are known carcinogens that directly attack genetic material, accelerating the pathway to lung cancer.</p>
+        </section>
+
+        <section id="quiz2" class="mb-8 card p-6 rounded-xl">
+            <h3 class="text-xl font-semibold mb-4">Quick Check: What is the term for cellular damage caused by an imbalance from toxins?</h3>
+            <div class="flex flex-col space-y-3">
+                <button class="quiz-button p-3 rounded-lg text-left" data-answer="A">A. Cellular Hypertrophy</button>
+                <button class="quiz-button p-3 rounded-lg text-left" data-answer="B">B. Oxidative Stress</button>
+                <button class="quiz-button p-3 rounded-lg text-left" data-answer="C">C. Mitotic Overload</button>
+            </div>
+            <div id="feedback2" class="mt-4 font-bold hidden"></div>
+        </section>
+
+        <section class="mb-8 card p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-3">3. Protection and Prevention</h2>
+            <p class="leading-relaxed mb-4">The best protection is avoiding exposure. When air quality is poor, stay indoors and use air filtration. For occupational exposure, Firefighters **MUST** use certified respiratory protection (SCBA) correctly and consistently, not just during active fire suppression, but also during overhaul and cleanup when fine particulates are still airborne. Regular medical screenings are also critical for early detection.</p>
+        </section>
+
+    </main>
+    
+    <script>
+        const quizzes = [
+            { id: 'quiz1', answer: 'B' },
+            { id: 'quiz2', answer: 'B' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            quizzes.forEach(quiz => {
+                const quizSection = document.getElementById(quiz.id);
+                const buttons = quizSection.querySelectorAll('.quiz-button');
+                const feedbackDiv = document.getElementById(`feedback${quiz.id.slice(-1)}`);
+
+                buttons.forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        if (quizSection.dataset.answered) return;
+
+                        const selectedButton = event.currentTarget;
+                        const selectedAnswer = selectedButton.dataset.answer;
+                        quizSection.dataset.answered = 'true';
+
+                        buttons.forEach(btn => btn.classList.remove('selected', 'correct', 'incorrect'));
+
+                        selectedButton.classList.add('selected');
+
+                        if (selectedAnswer === quiz.answer) {
+                            selectedButton.classList.remove('selected');
+                            selectedButton.classList.add('correct');
+                            feedbackDiv.textContent = "Correct! PM2.5 penetrates deepest into lung tissue.";
+                            feedbackDiv.classList.remove('hidden', 'text-red-400');
+                            feedbackDiv.classList.add('text-green-400');
+                        } else {
+                            selectedButton.classList.remove('selected');
+                            selectedButton.classList.add('incorrect');
+                            buttons.forEach(btn => {
+                                if (btn.dataset.answer === quiz.answer) {
+                                    btn.classList.add('correct');
+                                }
+                            });
+                            feedbackDiv.textContent = "Incorrect. The correct answer is B. PM2.5.";
+                            feedbackDiv.classList.remove('hidden', 'text-green-400');
+                            feedbackDiv.classList.add('text-red-400');
+                        }
+
+                        buttons.forEach(btn => btn.disabled = true);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

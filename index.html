@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, height=844, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Firefighter Lung Health App</title>
+  <link rel="stylesheet" href="style.css">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyI1xSt2ODvqonznF29vrVzdgcsItFlbc&libraries=places"></script>
+</head>
+<body>
+  <div id="fadeOverlay" style="position:fixed; inset:0; background:#000; z-index:9999; transition:opacity 1.5s ease-out; pointer-events:none;"></div>
+
+  <div class="app" id="app">
+    
+    <div class="screen active" id="1">
+      <img src="assets/new-folder/newcongressionalapp/screen1.jpg" class="bg" alt="screen 1"
+           onerror="document.getElementById('fallback1').style.display='flex'"/>
+      <div id="fallback1" class="fallback">Couldn't load assets/screen1.jpg</div>
+      
+      <button class="nav-zone prev" aria-label="Previous screen" onclick="prevScreen()"></button>
+      <button class="nav-zone next" aria-label="Next screen" onclick="nextScreen()"></button>
+    </div>
+
+    <div class="screen" id="2">
+      <img src="assets/new-folder/newcongressionalapp/screen2.jpg" class="bg" alt="screen 2"
+           onerror="document.getElementById('fallback2').style.display='flex'"/>
+      <div id="fallback2" class="fallback">Couldn't load assets/screen2.jpg</div>
+      
+      <input id="usernameInput" class="ui-input" placeholder="name here" autocomplete="username"
+        style="position:absolute; left:70px; top:499px; width:200px; height:42px;" />
+      <input id="passwordInput" class="ui-input" placeholder="password" type="password" autocomplete="current-password"
+        style="position:absolute; left:70px; top:579px; width:200px; height:42px;" />
+
+      <button class="input-proxy" data-target="usernameInput" aria-label="Focus username"
+        style="position:absolute; left:70px; top:499px; width:200px; height:42px;"></button>
+      <button class="input-proxy" data-target="passwordInput" aria-label="Focus password"
+        style="position:absolute; left:70px; top:579px; width:200px; height:42px;"></button>
+      
+      <button id="loginBtn2" onclick="showScreen(4)"
+        style="position:absolute; left:60px; top:650px; width:200px; height:60px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+
+      <button id="signupBtn2" onclick="showScreen(3)"
+        style="position:absolute; left:120px; top:750px; width:120px; height:22px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+    </div>
+
+    <div class="screen" id="3">
+      <img src="assets/new-folder/newcongressionalapp/screen3.jpg" class="bg" alt="screen 3"
+           onerror="document.getElementById('fallback3').style.display='flex'"/>
+      <div id="fallback3" class="fallback">Couldn't load assets/screen3.jpg</div>
+      
+      <input id="enterUsername" class="ui-input" placeholder="Enter username" autocomplete="username"
+        style="position:absolute; left:70px; top:343px; width:200px; height:42px;" />
+      <input id="enterEmail" class="ui-input" placeholder="Enter email" autocomplete="email"
+        style="position:absolute; left:70px; top:435px; width:200px; height:42px;" />
+      <input id="passwordBtn2" class="ui-input" placeholder="Enter password" type="password" autocomplete="new-password"
+        style="position:absolute; left:70px; top:524px; width:200px; height:42px;" />
+      
+      <input id="dateOfBirth" class="ui-input" type="date" 
+        style="position:absolute; left:70px; top:612px; width:200px; height:42px; border-radius:8px; border:none; padding:8px;" />
+      
+      <button id="clearBtn" onclick="checkPasswordAndGoToScreen4()" 
+        style="position:absolute; left:50px; top:670px; width:333px; height:71px; background-color:transparent; color:transparent; border:none; cursor:pointer;">Clear</button>
+    </div>
+
+    <div class="screen" id="4">
+      <img src="assets/new-folder/newcongressionalapp/screen4.jpg" class="bg" alt="screen 4"
+           onerror="document.getElementById('fallback4').style.display='flex'"/>
+      <div id="fallback4" class="fallback">Couldn't load assets/screen4.jpg</div>
+      
+      <button id="leaderboardBtn" onclick="showScreen(5)"
+        style="position:absolute; left:110px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="balanceBtn4" onclick="showScreen(6)"
+        style="position:absolute; left:220px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="lungModuleBtn4" onclick="showScreen(11)"
+        style="background-color:transparent; color:transparent; border:none; outline:none; box-shadow:none; cursor:pointer; position:absolute; left:20px; bottom:400px; width:200px; height:190px; z-index:1000;"></button>
+      
+      <button id="mapBtn4" onclick="showScreen(8)"
+        style="position:absolute; left:110px; top:790px; width:50px; height:40px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="aiBtn4" class="ai-btn" onclick="showScreen(9)"></button>
+      
+      <button id="settingsBtn4" class="settings-btn" onclick="showScreen(10)"></button>
+    </div>
+
+    <div class="screen" id="5">
+      <img src="assets/new-folder/newcongressionalapp/screen5.jpg" class="bg" alt="screen 5"
+           onerror="document.getElementById('fallback5').style.display='flex'"/>
+      <div id="fallback5" class="fallback">Couldn't load assets/screen5.jpg</div>
+      
+      <button id="leaderboardBtn5" onclick="showScreen(5)"
+        style="position:absolute; left:110px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="gamesBtn5" onclick="showScreen(4)"
+        style="position:absolute; left:40px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="balanceBtn5" onclick="showScreen(6)"
+        style="position:absolute; left:220px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="shopBtn5" onclick="showScreen(7)"
+        style="position:absolute; left:320px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="mapBtn5" onclick="showScreen(8)"
+        style="position:absolute; left:110px; top:790px; width:50px; height:40px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="aiBtn5" class="ai-btn" onclick="showScreen(9)"></button>
+      
+      <button id="settingsBtn5" class="settings-btn" onclick="showScreen(10)"></button>
+    </div>
+
+    <div class="screen" id="6">
+      <img src="assets/new-folder/newcongressionalapp/screen6.jpg" class="bg" alt="screen 6"
+           onerror="document.getElementById('fallback6').style.display='flex'"/>
+      <div id="fallback6" class="fallback">Couldn't load assets/screen6.jpg</div>
+      
+      <button id="leaderboardBtn6" onclick="showScreen(5)"
+        style="position:absolute; left:110px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="shopBtn6" onclick="showScreen(7)"
+        style="position:absolute; left:320px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="gamesBtn6" onclick="showScreen(4)"
+        style="position:absolute; left:40px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="mapBtn6" onclick="showScreen(8)"
+        style="position:absolute; left:110px; top:790px; width:50px; height:40px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="aiBtn6" class="ai-btn" onclick="showScreen(9)"></button>
+      
+      <button id="settingsBtn6" class="settings-btn" onclick="showScreen(10)"></button>
+    </div>
+
+    <div class="screen" id="7">
+      <img src="assets/new-folder/newcongressionalapp/screen7.jpg" class="bg" alt="screen 7"
+           onerror="document.getElementById('fallback7').style.display='flex'"/>
+      <div id="fallback7" class="fallback">Couldn't load assets/screen7.jpg</div>
+      
+      <button id="leaderboardBtn7" onclick="showScreen(5)"
+        style="position:absolute; left:110px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="gamesBtn7" onclick="showScreen(4)"
+        style="position:absolute; left:40px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="balanceBtn7" onclick="showScreen(6)"
+        style="position:absolute; left:220px; top:210px; width:90px; height:30px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="mapBtn7" onclick="showScreen(8)"
+        style="position:absolute; left:110px; top:790px; width:50px; height:40px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="aiBtn7" class="ai-btn" onclick="showScreen(9)"></button>
+      
+      <button id="settingsBtn7" class="settings-btn" onclick="showScreen(10)"></button>
+    </div>
+
+    <div class="screen" id="8">
+      <div style="width:100%; height:100%; position:relative; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div id="googleMapContainer" style="width:100%; height:100%;"></div>
+      </div>
+      
+      <button id="aiBtn8" class="ai-btn" onclick="showScreen(9)"></button>
+      <button id="settingsBtn8" class="settings-btn" onclick="showScreen(10)"></button>
+    </div>
+
+    <div class="screen" id="9">
+      <img src="assets/new-folder/newcongressionalapp/screen9.jpg" class="bg" alt="screen 9"
+           onerror="document.getElementById('fallback9').style.display='flex'"/>
+      <div id="fallback9" class="fallback">Couldn't load assets/screen9.jpg</div>
+      
+      <button class="nav-zone prev" aria-label="Previous screen" onclick="prevScreen()"></button>
+      <button class="nav-zone next" aria-label="Next screen" onclick="nextScreen()"></button>
+      
+      <input id="aiInput" class="ui-input" placeholder="" 
+             style="position: absolute; left: 89px; top: 670px; width: 220px; height: 42px; background: transparent; color: #333; border: none; padding: 12px; font-size: 14px; border-radius: 8px; font-family: Arial, sans-serif; z-index: 10; outline: none;"
+             onkeydown="if(event.key==='Enter'){ event.preventDefault(); sendAIMessage(); }"
+             onfocus="showInputActive()"
+             onblur="hideInputActive()"/>
+      
+      <button type="button" tabindex="-1" aria-label="Focus AI input" style="position: absolute; left: 89px; top: 670px; width: 220px; height: 42px; background: transparent; border: none; cursor: text; z-index: 5;" onclick="event.preventDefault(); event.stopPropagation(); document.getElementById('aiInput').focus(); return false;"></button>
+      
+      <div id="aiResponseArea" style="position: absolute; left: 50%; top: 478px; transform: translateX(-50%); width: 290px; min-height: 60px; max-height: 220px; overflow-y: auto; z-index: 15; pointer-events: auto; background: rgba(255,255,255,0.85); border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+        <div id="aiMessages" style="display: flex; flex-direction: column; gap: 10px; width: 100%;"></div>
+      </div>
+      
+      <div id="inputFeedback" style="position: absolute; left: 87px; top: 668px; width: 224px; height: 46px; border: 2px solid #007AFF; border-radius: 10px; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 8;"></div>
+      
+      <button id="mapBtn9" onclick="showScreen(8)"
+        style="position:absolute; left:110px; top:790px; width:50px; height:40px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="aiBtn9" class="ai-btn" onclick="showScreen(9)"></button>
+      
+      <button id="settingsBtn9" class="settings-btn" onclick="showScreen(10)"></button>
+    </div>
+
+    <div class="screen" id="10">
+      <img src="assets/new-folder/newcongressionalapp/screen10.jpg" class="bg" alt="screen 10"
+           onerror="document.getElementById('fallback10').style.display='flex'"/>
+      <div id="fallback10" class="fallback">Couldn't load assets/screen10.jpg</div>
+      
+      <button id="mapBtn10" onclick="showScreen(8)"
+        style="position:absolute; left:110px; top:790px; width:50px; height:40px; background-color:transparent; color:transparent; border:none; cursor:pointer;"></button>
+      
+      <button id="aiBtn10" class="ai-btn" onclick="showScreen(9)"></button>
+    </div>
+
+    <div class="screen" id="11">
+      <div style="width:100%; height:100%; background: linear-gradient(135deg, #0d0d4a 0%, #1a1a7c 100%); position:relative; overflow-y: auto; padding: 20px; box-sizing: border-box;">
+        
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+          <div onclick="showScreen(4)" style="color:white; cursor:pointer; font-family:Arial,sans-serif; font-size:14px; font-weight:400;">EXIT</div>
+          <h1 style="color:white; font-size:16px; font-weight:800; margin:0; text-align:center; flex:1; font-family:Arial,sans-serif;">LUNG CANCER INTERACTIVE</h1>
+          <div style="width:60px;"></div>
+        </div>
+        
+        <button id="exitBtn11" onclick="showScreen(4)"
+          style="position:absolute; left:20px; top:27px; width:40px; height:20px; background-color:transparent; color:transparent; border:none; cursor:pointer; z-index:10;"></button>
+        
+        <div style="height:6px; width:90%; margin:0 auto 20px auto; background: linear-gradient(90deg, #f06292 0%, #4fc3f7 100%); border-radius:3px;"></div>
+        
+        <div style="max-width:350px; margin:0 auto; font-family:Arial,sans-serif;">
+          
+          <div class="quiz-section">
+            <h2 style="color:#e0f7fa; font-size:18px; font-weight:bold; margin:0 0 12px 0;">1. The Invisible Enemy: Wildfire Smoke</h2>
+            <p style="color:#e0f7fa; font-size:13px; line-height:1.4; margin:0 0 12px 0;">Wildfire smoke contains toxic <strong>Particulate Matter (PM)</strong>. <strong>PM2.5</strong> particles are 30x smaller than human hair, bypassing defenses to lodge deep in lungs.</p>
+            <p style="color:#e0f7fa; font-size:13px; line-height:1.4; margin:0;">Long-term exposure introduces carcinogens, drastically increasing pulmonary disease risk.</p>
+          </div>
+          
+          <div id="quiz1" class="quiz-section">
+            <h3 style="color:#e0f7fa; font-size:16px; font-weight:600; margin:0 0 12px 0;">Quick Check: Most dangerous particulate matter size?</h3>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <button class="quiz-btn" data-quiz="1" data-answer="A">A. PM10</button>
+              <button class="quiz-btn" data-quiz="1" data-answer="B">B. PM2.5</button>
+              <button class="quiz-btn" data-quiz="1" data-answer="C">C. PM50</button>
+            </div>
+            <div id="feedback1" style="margin-top:12px; font-weight:bold; display:none;"></div>
+          </div>
+          
+          <div id="section2" class="quiz-section quiz-hidden">
+            <h2 style="color:#e0f7fa; font-size:18px; font-weight:bold; margin:0 0 12px 0;">2. How Smoke Damages Lung Cells</h2>
+            <p style="color:#e0f7fa; font-size:13px; line-height:1.4; margin:0 0 12px 0;">PM2.5 particles cause <strong>oxidative stress</strong> in airways and alveoli. This damages cell <strong>DNA</strong> leading to mutations and uncontrolled growth (cancer).</p>
+            <p style="color:#e0f7fa; font-size:13px; line-height:1.4; margin:0;">Toxins like <strong>PAHs</strong> and heavy metals directly attack genetic material, accelerating lung cancer development.</p>
+          </div>
+          
+          <div id="quiz2" class="quiz-section quiz-hidden">
+            <h3 style="color:#e0f7fa; font-size:16px; font-weight:600; margin:0 0 12px 0;">Quick Check: Cellular damage from toxins is called?</h3>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <button class="quiz-btn" data-quiz="2" data-answer="A">A. Cellular Hypertrophy</button>
+              <button class="quiz-btn" data-quiz="2" data-answer="B">B. Oxidative Stress</button>
+              <button class="quiz-btn" data-quiz="2" data-answer="C">C. Mitotic Overload</button>
+            </div>
+            <div id="feedback2" style="margin-top:12px; font-weight:bold; display:none;"></div>
+          </div>
+          
+          <div id="section3" class="quiz-section quiz-hidden">
+            <h2 style="color:#e0f7fa; font-size:18px; font-weight:bold; margin:0 0 12px 0;">3. Protection and Prevention</h2>
+            <p style="color:#e0f7fa; font-size:13px; line-height:1.4; margin:0 0 12px 0;">Best protection is avoiding exposure. When air quality is poor, stay indoors with air filtration.</p>
+            <p style="color:#e0f7fa; font-size:13px; line-height:1.4; margin:0;">Firefighters <strong>MUST</strong> use certified respiratory protection (SCBA) during fire suppression, overhaul, and cleanup. Regular medical screenings are critical for early detection.</p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script src="google-maps.js"></script>
+</body>
+</html>
